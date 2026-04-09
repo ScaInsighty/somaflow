@@ -125,3 +125,60 @@ Cada decisión incluye: fecha, contexto, decisión tomada, razón y quién la to
 - **Razón:** Stripe maneja esto de forma nativa, evita duplicar esfuerzo de desarrollo.
 - **Estado:** ✅ Confirmado
 - **Quién:** Insighty AI
+
+---
+
+### DEC-014 — Categorías de Regulación Rápida renombradas
+- **Fecha:** 5 abril 2026
+- **Contexto:** El PRD original usaba nombres descriptivos genéricos para las 7 categorías. Silvia revisó el checklist de M1 y los renombró con nombres más alineados a la experiencia del usuario.
+- **Decisión:** Las categorías son: ANSIEDAD-ACTIVACIÓN / DESBORDADO / MENTE ACELERADA / TENSIÓN CORPORAL / CANSADO-SIN ENERGÍA / SUEÑO / VOLVER AL PRESENTE.
+- **Estado:** ✅ Confirmado
+- **Quién:** Silvia Diazgranados
+
+---
+
+### DEC-019 — Test del Sistema Nervioso determina el orden de presentación de los 30 videos
+- **Fecha:** Abril 2026
+- **Contexto:** Silvia mencionó en el checklist de M1 que la presentación de los días debía ser personalizada según el resultado del test.
+- **Decisión:** Los 30 videos de rutina son los mismos para todos los usuarios. El resultado del test (Dorsal / Simpático / Ventral) determina el orden en que se presentan. Silvia define manualmente las 3 secuencias (una por tipo de SN). Se implementa mediante una tabla `secuencias` en la base de datos.
+- **Estado:** ✅ Confirmado
+- **Quién:** Silvia Diazgranados + Insighty AI
+- **Impacto:** Requiere tabla adicional `secuencias` en el modelo de datos. La tabla `contenidos` no tiene campo `día_programa` fijo.
+
+---
+
+### DEC-018 — Alerta a Silvia para mensajes sin keyword: canal email
+- **Fecha:** Abril 2026
+- **Contexto:** Silvia solicitó ser notificada cuando un usuario escriba al bot y no se detecte ninguna palabra clave, para no dejar el mensaje ignorado.
+- **Decisión:** Se registra el mensaje en tabla `alertas_silvia` y se envía notificación por email a Silvia.
+- **Estado:** ✅ Confirmado
+- **Quién:** Santiago Ciurlo (confirma canal)
+
+---
+
+### DEC-017 — Protocolo de crisis WhatsApp incluido en M3; recursos solo Colombia
+- **Fecha:** Abril 2026
+- **Contexto:** Silvia solicitó detección de riesgo emocional grave en el bot de WhatsApp con 3 niveles de respuesta.
+- **Decisión:** El protocolo entra dentro del alcance de M3 sin costo adicional. Los recursos de emergencia son solo para Colombia en v1 (Línea 106, 123, SalvaVías). No se pregunta por país al usuario.
+- **Estado:** ✅ Confirmado
+- **Quién:** Santiago Ciurlo (confirma scope y alcance geográfico)
+
+---
+
+### DEC-016 — Twilio reemplazado por Meta WhatsApp Cloud API
+- **Fecha:** Abril 2026
+- **Contexto:** El stack original contemplaba Twilio como intermediario para WhatsApp. Se evaluó el costo operativo.
+- **Decisión:** Se descarta Twilio. Se usa Meta WhatsApp Cloud API directo, integrado con n8n.
+- **Razón:** Costo — Twilio cobra por mensaje enviado sobre el costo de Meta. Usar Meta directo elimina el intermediario y reduce costos operativos a escala.
+- **Estado:** ✅ Confirmado
+- **Quién:** Insighty AI (recomienda) / Santiago Ciurlo (confirma)
+- **Impacto:** `.env.local` actualizado con variables META_WHATSAPP_*. DEC-003 (número de negocio dedicado) no cambia — solo cambia el proveedor técnico.
+
+---
+
+### DEC-015 — Lista de palabras clave por categoría definida
+- **Fecha:** 5 abril 2026
+- **Contexto:** Las palabras clave que disparan mensajes de Regulación Rápida por WhatsApp estaban pendientes desde el inicio del proyecto.
+- **Decisión:** Silvia entregó la lista completa con +60 palabras/frases distribuidas en 6 categorías activas (ANSIEDAD-ACTIVACIÓN, DESBORDADO, MENTE ACELERADA, TENSIÓN CORPORAL, CANSADO-SIN ENERGÍA, SUEÑO). La categoría VOLVER AL PRESENTE se reserva para el protocolo de seguridad. Lista completa documentada en PRD.md, sección Módulo 3.
+- **Estado:** ✅ Confirmado
+- **Quién:** Silvia Diazgranados

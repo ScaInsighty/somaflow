@@ -219,3 +219,9 @@ Día 1 habilitado
 | Anticipo recibido (50% — USD 750) | ⬜ Por confirmar |
 | Inicio de Módulo 1 | ⬜ Pendiente |
 | Go-live objetivo | Mediados de mayo 2026 |
+
+---
+
+## Ver también
+
+[[CLAUDE|CLAUDE]] · [[PRD|PRD]] · [[Decisiones|Decisiones]] · [[Contrato|Contrato]] · [[../../Knowledge/Lecciones/silvia-somaflow|Lecciones aprendidas]] · [[../../Operaciones/clientes-index|Índice de clientes]]

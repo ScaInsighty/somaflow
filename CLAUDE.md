@@ -24,7 +24,7 @@ Sistema web + automatización WhatsApp que permite a usuarios de un programa de 
 | `Brief.md` | Contexto del negocio, flujos, encuestas, stack, visión a futuro |
 | `Contrato.md` | Partes, pagos, módulos, plazos, exclusiones |
 | `PRD.md` | Requerimientos funcionales por módulo, flujos detallados, pendientes |
-| `Decisiones.md` | Registro de decisiones técnicas y de negocio (DEC-001 a DEC-013) |
+| `Decisiones.md` | Registro de decisiones técnicas y de negocio (DEC-001 a DEC-019) |
 | `Reuniones.md` | Actas de reuniones y acuerdos |
 
 ---
@@ -46,13 +46,19 @@ Sistema web + automatización WhatsApp que permite a usuarios de un programa de 
 | DEC-011 | Landing + Test del Sistema Nervioso dentro del alcance | ✅ |
 | DEC-012 | Regulación Rápida: videos cortos independientes, acceso libre en micrositio | ✅ |
 | DEC-013 | Correo de confirmación de compra lo envía Stripe | ✅ |
+| DEC-014 | Categorías Regulación Rápida: ANSIEDAD-ACTIVACIÓN / DESBORDADO / MENTE ACELERADA / TENSIÓN CORPORAL / CANSADO-SIN ENERGÍA / SUEÑO / VOLVER AL PRESENTE | ✅ |
+| DEC-015 | Lista de palabras clave por categoría definida (ver PRD.md — Módulo 3) | ✅ |
+| DEC-016 | Twilio reemplazado por Meta WhatsApp Cloud API directo — menor costo operativo | ✅ |
+| DEC-017 | Protocolo de crisis WhatsApp incluido en M3; recursos solo Colombia en v1 | ✅ |
+| DEC-018 | Alerta a Silvia para mensajes sin keyword → canal email | ✅ |
+| DEC-019 | Test SN → 30 videos mismos, 3 órdenes distintos por resultado (Dorsal/Simpático/Ventral) | ✅ |
 
 ---
 
 ## Stack técnico confirmado
 
 - **Automatización:** n8n (configurar desde cero)
-- **WhatsApp:** Twilio (crear cuenta desde cero)
+- **WhatsApp:** Meta WhatsApp Cloud API directo (sin intermediario)
 - **Hosting:** Google Cloud
 - **Base de datos:** Supabase + PostgreSQL
 - **Pagos:** Stripe
@@ -100,9 +106,13 @@ Horario válido: 8:00am – 8:00pm Colombia. Tono: cercano, humano, calmado, mot
 
 | # | Pendiente | Responsable |
 |---|---|---|
-| 1 | Lista de palabras clave que disparan Regulación Rápida | Silvia |
+| 1 | ~~Lista de palabras clave~~ | ✅ Resuelto — 5 abril 2026 |
 | 2 | Dominio del micrositio | Silvia |
 | 3 | Data de prueba (pacientes no activos + compradores del libro) | Silvia (Módulo 2) |
+| 4 | ~~Protocolo de crisis~~ | ✅ Resuelto — entra en M3 |
+| 5 | ~~Canal de notificación sin keyword~~ | ✅ Resuelto — email |
+| 6 | ~~Test SN → orden de días~~ | ✅ Resuelto — DEC-019 |
+| 7 | ~~Recursos de emergencia~~ | ✅ Resuelto — solo Colombia |
 
 ---
 
