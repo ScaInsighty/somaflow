@@ -920,7 +920,7 @@
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 64px;
-      align-items: start;
+      align-items: center;
     }
 
     .que-es-label {
@@ -1629,6 +1629,51 @@
       }
     }
 
+    /* Section images */
+    .para-quien-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      margin: 40px 0 48px;
+      display: block;
+    }
+
+    .que-es-img {
+      max-width: 1100px;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center 65%;
+      border-radius: 20px;
+      margin: 0 auto 56px;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .programa-img-wrapper {
+      max-width: 1000px;
+      margin: 56px auto 0;
+    }
+
+    .programa-img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+    }
+
+    #cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/ChatGPT Image 21 abr 2026, 15_55_54.png");
+      background-size: cover;
+      background-position: center 35%;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* FOOTER */
     #footer {
       background: var(--noche);
@@ -1688,10 +1733,10 @@
       <div class="hero-blob" style="width:400px;height:300px;top:10%;left:5%;background:rgba(95,164,132,0.08);animation-delay:0s;"></div>
       <div class="hero-blob" style="width:300px;height:400px;top:30%;right:8%;background:rgba(65,100,100,0.10);animation-delay:-4s;"></div>
       <div class="hero-blob" style="width:250px;height:250px;bottom:15%;left:40%;background:rgba(185,193,143,0.06);animation-delay:-8s;"></div>
-      <div id="hero-us-wrapper" style="position:absolute;top:0;left:0;right:0;bottom:-48%;z-index:0;pointer-events:none;opacity:0;">
-        <div style="position:absolute;inset:0;opacity:0.7;mix-blend-mode:screen;">
+      <div id="hero-us-wrapper" style="position:absolute;top:-5%;left:-8%;right:-8%;bottom:-30%;z-index:0;pointer-events:none;opacity:0.2;transition:opacity 0.8s ease;">
+        <div style="position:absolute;inset:0;opacity:0.75;mix-blend-mode:screen;">
           <div data-us-project="0bj47BRhqOMrgLlpMNC0" data-us-dpi="1.5" data-us-fps="60" data-us-lazyload="false"
-            data-us-production="true" style="position:absolute;inset:0;width:100%;height:100%;filter:hue-rotate(-62deg) saturate(1.5) brightness(1.1);"></div>
+            data-us-production="true" style="position:absolute;inset:0;width:100%;height:100%;filter:hue-rotate(-48deg) saturate(1.4) brightness(1.1);"></div>
         </div>
       </div>
       <div class="hero-content">
@@ -1708,9 +1753,6 @@
           <a href="#precio" class="btn-primary">Quiero empezar &rarr;</a>
         </div>
         <p class="hero-subtext">Acceso inmediato &middot; A tu ritmo &middot; Sin compromiso</p>
-        <div class="scroll-indicator" aria-hidden="true">
-          <div class="scroll-line"></div>
-        </div>
       </div>
     </section>
 
@@ -1728,6 +1770,7 @@
         <blockquote class="para-quien-blockquote reveal reveal-delay-1">
           &ldquo;Ya se lo que tengo que hacer. Lo entiendo perfectamente. Pero mi cuerpo no me obedece.&rdquo;
         </blockquote>
+        <img src="assets/ChatGPT Image 21 abr 2026, 16_01_56.png" alt="Personas en distintos estados de regulación nerviosa" class="para-quien-img reveal">
         <div class="sintomas-grid">
           <div class="sintoma-card reveal reveal-delay-1">
             <svg class="sintoma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1879,6 +1922,9 @@
         <p class="label programa-label reveal">EL PROGRAMA</p>
         <h2 class="programa-title reveal reveal-delay-1">30 días. 4 semanas. Un camino hacia adentro.</h2>
         <p class="programa-subtitle reveal reveal-delay-2">Cada semana tiene un propósito claro. Cada práctica está diseñada para donde estarás en ese momento.</p>
+      </div>
+      <div class="programa-img-wrapper reveal reveal-delay-2">
+        <img src="assets/ChatGPT Image 21 abr 2026, 16_08_26.png" alt="Secuencia de prácticas somáticas guiadas" class="programa-img">
       </div>
       <div class="fases-grid">
         <div class="fase-card reveal">
@@ -2467,22 +2513,33 @@
     // Initialize test
     renderQuestion();
 
-    // UnicornStudio — activar al hover del CTA
+    // UnicornStudio — activar por proximidad al CTA
     (function () {
       const wrapper = document.getElementById('hero-us-wrapper');
       const cta = document.querySelector('.hero-cta a');
-      if (!wrapper || !cta) return;
+      const hero = document.getElementById('hero');
+      if (!wrapper || !cta || !hero) return;
 
-      cta.addEventListener('mouseenter', function () {
-        wrapper.style.transition = 'opacity 0.9s ease 0.15s';
-        wrapper.style.opacity = '1';
+      hero.addEventListener('mousemove', function (e) {
+        const rect = cta.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dist = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+        if (dist < 220) {
+          wrapper.style.transition = 'opacity 0.7s ease';
+          wrapper.style.opacity = '1';
+        } else {
+          wrapper.style.transition = 'opacity 1.6s ease';
+          wrapper.style.opacity = '0.2';
+        }
       });
 
-      cta.addEventListener('mouseleave', function () {
-        wrapper.style.transition = 'opacity 1.8s ease';
-        wrapper.style.opacity = '0';
+      hero.addEventListener('mouseleave', function () {
+        wrapper.style.transition = 'opacity 1.6s ease';
+        wrapper.style.opacity = '0.4';
       });
     })();
+
   </script>
 
   <script>
