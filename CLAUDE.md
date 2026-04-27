@@ -1,136 +1,45 @@
-# CLAUDE.md — Somaflow
-*Contexto para el agente de Insighty AI*
+# Landing Somaflow
 
----
+Landing page estática para el programa Somaflow de Silvia Diazgranados.
 
-## Quién eres en este proyecto
+## Archivos
 
-Eres el agente de desarrollo de Insighty AI trabajando en el proyecto **SomaFlow** para la cliente **Silvia Diazgranados**, psicóloga y creadora del programa de bienestar somático Somaflow.
-
-Tu rol es apoyar al equipo técnico de Insighty en el desarrollo, documentación y toma de decisiones del proyecto. Tienes acceso a todos los documentos del cliente y debes mantener coherencia con las decisiones ya tomadas.
-
----
-
-## El proyecto en una línea
-
-Sistema web + automatización WhatsApp que permite a usuarios de un programa de bienestar de 30 días acceder a rutinas somáticas en video, completar encuestas opcionales pre/post práctica, y recibir acompañamiento automatizado — todo administrado por Silvia desde un micrositio.
-
----
-
-## Documentos clave del proyecto
-
-| Documento | Contenido |
+| Archivo | Descripción |
 |---|---|
-| `Brief.md` | Contexto del negocio, flujos, encuestas, stack, visión a futuro |
-| `Contrato.md` | Partes, pagos, módulos, plazos, exclusiones |
-| `PRD.md` | Requerimientos funcionales por módulo, flujos detallados, pendientes |
-| `Decisiones.md` | Registro de decisiones técnicas y de negocio (DEC-001 a DEC-019) |
-| `Reuniones.md` | Actas de reuniones y acuerdos |
+| `somaflow-landing.html` | Único archivo de código — todo el HTML, CSS y JS está aquí |
+| `assets/` | Imágenes, video de hero y logo |
+| `reglas.md` | Branding, paleta, tipografía y reglas de diseño |
 
----
+## Git
 
-## Decisiones ya tomadas — NO reabrir sin justificación
+- Repositorio: `https://github.com/ScaInsighty/somaflow.git`
+- Branch: `main`
+- Deploy: GitHub Pages → `https://scainsighty.github.io/somaflow/somaflow-landing.html`
+- **Solo commitear** `somaflow-landing.html` y archivos dentro de `assets/` — el repo tiene otros archivos del proyecto app que no pertenecen aquí
 
-| # | Decisión | Estado |
-|---|---|---|
-| DEC-001 | Encuestas opcionales — no condicionan acceso al video | ✅ |
-| DEC-002 | Videos en micrositio, NO por WhatsApp | ✅ |
-| DEC-003 | Número de negocio dedicado a Somaflow | ✅ |
-| DEC-004 | Mobile-first | ✅ |
-| DEC-005 | Somaflow es programa de bienestar, NO clínico | ✅ |
-| DEC-006 | Respuestas de encuestas dentro del micrositio | ✅ |
-| DEC-007 | Hosting en Google Cloud | ✅ |
-| DEC-008 | Supabase + PostgreSQL como base de datos | ✅ |
-| DEC-009 | Micrositio a medida, NO Mighty Networks | ✅ |
-| DEC-010 | Plataforma de pagos: Stripe | ✅ |
-| DEC-011 | Landing + Test del Sistema Nervioso dentro del alcance | ✅ |
-| DEC-012 | Regulación Rápida: videos cortos independientes, acceso libre en micrositio | ✅ |
-| DEC-013 | Correo de confirmación de compra lo envía Stripe | ✅ |
-| DEC-014 | Categorías Regulación Rápida: ANSIEDAD-ACTIVACIÓN / DESBORDADO / MENTE ACELERADA / TENSIÓN CORPORAL / CANSADO-SIN ENERGÍA / SUEÑO / VOLVER AL PRESENTE | ✅ |
-| DEC-015 | Lista de palabras clave por categoría definida (ver PRD.md — Módulo 3) | ✅ |
-| DEC-016 | Twilio reemplazado por Meta WhatsApp Cloud API directo — menor costo operativo | ✅ |
-| DEC-017 | Protocolo de crisis WhatsApp incluido en M3; recursos solo Colombia en v1 | ✅ |
-| DEC-018 | Alerta a Silvia para mensajes sin keyword → canal email | ✅ |
-| DEC-019 | Test SN → 30 videos mismos, 3 órdenes distintos por resultado (Dorsal/Simpático/Ventral) | ✅ |
+## Reglas de trabajo
 
----
+- Todo el código vive en `somaflow-landing.html` — no crear archivos CSS o JS separados
+- No modificar secciones fuera del alcance del cambio pedido
+- Al hacer commit, agregar solo `somaflow-landing.html` y `assets/` — nunca los archivos del app (`app/`, `Brief.md`, `CLAUDE.md`, etc.)
+- Consultar `reglas.md` antes de cualquier cambio visual
 
-## Stack técnico confirmado
+## Secciones de la landing
 
-- **Automatización:** n8n (configurar desde cero)
-- **WhatsApp:** Meta WhatsApp Cloud API directo (sin intermediario)
-- **Hosting:** Google Cloud
-- **Base de datos:** Supabase + PostgreSQL
-- **Pagos:** Stripe
-- **Frontend:** Aplicación web a medida — mobile-first
+1. **Nav** — fijo, logo centrado (`assets/Logo Soma.png`), botón "Empezar →" a la derecha
+2. **Hero** — video de fondo en loop, overlay teal, aurora animada (UnicornStudio), título + CTA
+3. **Para quién** — fondo salvia, grid 2×2 de síntomas con iconos hand-drawn
+4. **Qué es** — fondo noche, descripción del método
+5. **Fases** — 4 cards (01–04) con días y descripción de cada fase del programa
+6. **Facilitadora** — sección sobre Silvia Diazgranados
+7. **Testimonios** — carrusel de testimonios reales
+8. **Precio** — card de precio con CTA
+9. **FAQ** — acordeón de preguntas frecuentes
+10. **CTA final** — llamada a la acción de cierre
+11. **Footer** — copyright 2026 Silvia Diazgranados
 
----
+## Assets disponibles
 
-## Estructura del programa
-
-- 30 días consecutivos, una rutina por día
-- Videos: formato vertical 4:3, 4K, duración media 15 minutos
-- Alojados en Google Drive (Silvia los está cargando)
-- Sin reglas de secuenciación entre rutinas
-- Cada día: encuesta pre (2 preguntas) → video → encuesta post (3 preguntas)
-
----
-
-## Encuestas — preguntas exactas
-
-### Pre-rutina (2 preguntas — opcionales)
-1. ¿Cómo está tu estado emocional ahora? — Escala 1-5 (Muy mal / Mal / Neutro / Bien / Muy bien)
-2. ¿Cómo se siente tu cuerpo ahora? — Opción múltiple (relajado / neutral / tenso / rígido / cansado / inquieto)
-
-### Post-rutina (3 preguntas — opcionales)
-1. ¿Cómo está tu estado emocional ahora? — Escala 1-5 (mismas opciones)
-2. ¿Cómo se siente tu cuerpo ahora? — Opción múltiple (mismas opciones)
-3. ¿Notaste algún cambio en tu cuerpo? — Selección múltiple (bostezos / suspiros / respiración más profunda / temblores suaves / sensación de frío o calor / lágrimas sin carga emocional / ninguno)
-
----
-
-## Triggers de WhatsApp
-
-| Trigger | Mensaje |
-|---|---|
-| Registro completado | Bienvenida |
-| Días 3, 7, 14, 21, 30 completados | Progreso |
-| 3, 5, 7 días sin actividad | Reactivación |
-| Palabras clave (ej: "estoy muy ansioso") | Link a video de Regulación Rápida en micrositio |
-
-Horario válido: 8:00am – 8:00pm Colombia. Tono: cercano, humano, calmado, motivacional.
-
----
-
-## Pendientes abiertos
-
-| # | Pendiente | Responsable |
-|---|---|---|
-| 1 | ~~Lista de palabras clave~~ | ✅ Resuelto — 5 abril 2026 |
-| 2 | Dominio del micrositio | Silvia |
-| 3 | Data de prueba (pacientes no activos + compradores del libro) | Silvia (Módulo 2) |
-| 4 | ~~Protocolo de crisis~~ | ✅ Resuelto — entra en M3 |
-| 5 | ~~Canal de notificación sin keyword~~ | ✅ Resuelto — email |
-| 6 | ~~Test SN → orden de días~~ | ✅ Resuelto — DEC-019 |
-| 7 | ~~Recursos de emergencia~~ | ✅ Resuelto — solo Colombia |
-
----
-
-## Límites del sistema (nunca sugerir ni implementar)
-
-- Diagnósticos clínicos automatizados
-- Recomendaciones terapéuticas personalizadas
-- Chat conversacional con IA
-- Integración con historia clínica (app.digitalipsy.com)
-- Migración de datos históricos
-- Modelo multi-tenant (es v2, no v1)
-
----
-
-## Información del contrato
-
-- **Valor total:** USD 1.500 (50% anticipo + 50% contra 70% de entregables)
-- **Plazo:** 5 semanas desde firma + anticipo
-- **Go-live objetivo:** Mediados de mayo 2026
-- **Soporte post go-live:** 1 mes gratuito + hasta 2 horas de ajustes en primeros 7 días
-- **Jurisdicción:** Colombia — Cámara de Comercio de Bogotá
+- `Logo Soma.png` — logo blanco sobre fondo transparente
+- `kling_20260422_作品_Create_a_h_1718_0.mp4` — video hero en loop
+- Imágenes de secciones: ChatGPT Image (×6) + Gemini_Generated_Image
