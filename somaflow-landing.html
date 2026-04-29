@@ -901,6 +901,194 @@
       color: var(--bosque);
     }
 
+    /* Test Gate & Lead Form */
+    .test-gate,
+    .lead-form-container {
+      animation: slideInRight 0.4s ease;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .test-gate-emoji {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .test-gate-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 26px;
+      color: var(--bosque);
+      margin-bottom: 12px;
+    }
+
+    .test-gate-subtitle {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--musgo);
+      margin-bottom: 28px;
+    }
+
+    .test-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .test-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--bruma);
+      border-radius: 12px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--bosque);
+      background: var(--arena);
+      box-sizing: border-box;
+      transition: border-color 0.2s ease;
+      outline: none;
+    }
+
+    .test-input:focus {
+      border-color: var(--teal);
+      background: white;
+    }
+
+    .test-input::placeholder {
+      color: var(--musgo);
+      opacity: 0.6;
+    }
+
+    .btn-gate,
+    .btn-lead {
+      width: 100%;
+      background: var(--bosque);
+      color: var(--crema);
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gate:hover,
+    .btn-lead:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 58, 52, 0.2);
+    }
+
+    .btn-gate:disabled,
+    .btn-lead:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .test-privacy {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--musgo);
+      opacity: 0.7;
+      margin-top: 12px;
+    }
+
+    /* Result enhancements */
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .result-badge.activado {
+      background: rgba(220, 100, 60, 0.1);
+      color: #C05030;
+    }
+
+    .result-badge.colapsado {
+      background: rgba(80, 100, 160, 0.1);
+      color: #3A5080;
+    }
+
+    .result-badge.regulado {
+      background: rgba(95, 164, 132, 0.12);
+      color: var(--teal);
+    }
+
+    .scores-breakdown {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .score-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--arena);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      color: var(--bosque);
+    }
+
+    .score-pill span {
+      font-weight: 600;
+    }
+
+    .result-video-wrap {
+      background: var(--noche);
+      border-radius: 16px;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .result-video-wrap iframe,
+    .result-video-wrap video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .result-video-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .result-video-placeholder svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    .result-video-placeholder p {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .test-title {
         font-size: 28px;
@@ -1847,7 +2035,7 @@
       <div class="test-header reveal">
         <p class="label test-label">TEST GRATUITO</p>
         <h2 class="test-title">¿Cómo está respondiendo tu sistema nervioso ahora mismo?</h2>
-        <p class="test-subtitle">8 preguntas. Sin diagnóstico. Solo una imagen honesta de lo que tu cuerpo está viviendo &mdash; y hacia dónde necesitas ir.</p>
+        <p class="test-subtitle">8 preguntas. Gratis. Descubre si tu sistema está en calma, en alerta o agotado &mdash; y qué puedes hacer hoy para regularlo.</p>
       </div>
       <div class="test-container reveal">
         <div class="progress-header">
@@ -2232,153 +2420,148 @@
       });
     });
 
-    // Test Data
+    // ——— SUPABASE CONFIG ———
+    const SUPABASE_URL = 'https://qqeiqpsgjmfffbpqzrnd.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ZTY54D1t5y8h3IPi8Yg4ig_hFvlqLe-';
+
+    // ——— TEST DATA ———
     const questions = [
       {
-        category: 'ENERGIA',
-        question: '¿Cómo describirías tu nivel de energía en los últimos días?',
-        context: 'No hablamos de cansancio por falta de sueño &mdash; sino de esa sensación más profunda de cómo llegas a cada día.',
+        category: 'CUERPO',
+        question: '¿Cómo se siente tu cuerpo últimamente?',
         options: [
-          { text: 'Me siento vivo y presente, con energía que fluye naturalmente', score: 0 },
-          { text: 'Hay días buenos y días difíciles, pero en general puedo sostenerme', score: 1 },
-          { text: 'Estoy cansado aunque descanse &mdash; como si nada recargara la batería', score: 2 },
-          { text: 'El agotamiento es constante. A veces no sé de dónde saco fuerzas para seguir', score: 3 }
+          { text: 'Ligero / en calma', type: 'regulacion' },
+          { text: 'Un poco tenso', type: 'activacion' },
+          { text: 'Muy tenso o inquieto', type: 'activacion' },
+          { text: 'Pesado o sin energía', type: 'colapso' }
         ]
       },
       {
-        category: 'RESPUESTA AL ESTRES',
-        question: '¿Cuando algo inesperado o difícil ocurre, cómo responde tu cuerpo?',
-        context: 'Observa la reacción física &mdash; no solo lo que piensas o decides hacer.',
+        category: 'MENTE',
+        question: '¿Cómo están tus pensamientos?',
         options: [
-          { text: 'Me activo, lo manejo y puedo volver a la calma con relativa facilidad', score: 0 },
-          { text: 'Me cuesta un poco volver al equilibrio, pero eventualmente lo logro', score: 1 },
-          { text: 'Mi cuerpo se dispara fuerte &mdash; corazón acelerado, tensión, y me cuesta bajar', score: 2 },
-          { text: 'Me desconecto, me paralizo, o reacciono de una manera que luego no entiendo', score: 3 }
+          { text: 'Claros', type: 'regulacion' },
+          { text: 'A veces se aceleran', type: 'activacion' },
+          { text: 'Muy acelerados / no paran', type: 'activacion' },
+          { text: 'Lentos / nublados', type: 'colapso' }
         ]
       },
       {
-        category: 'PRESENCIA EN EL CUERPO',
-        question: '¿Qué tan consciente eres de las sensaciones de tu cuerpo a lo largo del día?',
-        context: 'La tensión en los hombros, el nudo en el pecho, la rigidez en la mandíbula. ¿Los notas?',
+        category: 'EMOCIONES',
+        question: '¿Cómo te sientes emocionalmente?',
         options: [
-          { text: 'Tengo bastante conciencia de mi cuerpo y puedo notar sus señales', score: 0 },
-          { text: 'A veces lo noto, pero me distraigo o lo ignoro bastante seguido', score: 1 },
-          { text: 'Me doy cuenta de las señales solo cuando ya son intensas o me generan dolor', score: 2 },
-          { text: 'Me siento desconectado de mi cuerpo &mdash; como si viviera más en mi cabeza', score: 3 }
+          { text: 'Estable', type: 'regulacion' },
+          { text: 'Cambiante', type: 'activacion' },
+          { text: 'Ansioso / irritable', type: 'activacion' },
+          { text: 'Apagado / triste / desconectado', type: 'colapso' }
         ]
       },
       {
-        category: 'CALIDAD DEL DESCANSO',
-        question: '¿Cómo es tu relación con el descanso &mdash; dormir, parar, soltar?',
-        context: 'No solo la cantidad de horas, sino la calidad real de ese tiempo de pausa.',
+        category: 'ENERGÍA',
+        question: '¿Qué describe mejor tu energía?',
         options: [
-          { text: 'Puedo descansar genuinamente. Duermo y me recupero', score: 0 },
-          { text: 'El descanso es irregular &mdash; hay noches buenas y noches en que la mente no para', score: 1 },
-          { text: 'Me cuesta desconectarme para dormir, y me levanto sin sentirme descansado', score: 2 },
-          { text: 'El sueño es un territorio difícil &mdash; pesadillas, insomnio, o dormir demasiado sin recuperarme', score: 3 }
+          { text: 'Tengo energía estable', type: 'regulacion' },
+          { text: 'Me cuesta un poco activarme', type: 'colapso' },
+          { text: 'Estoy muy acelerado/a', type: 'activacion' },
+          { text: 'No tengo energía', type: 'colapso' }
         ]
       },
       {
-        category: 'REGULACIÓN EMOCIONAL',
-        question: '¿Cuando una emoción intensa aparece, qué pasa generalmente?',
-        context: 'Rabia, tristeza, miedo, vergüenza. Observa cómo entran y cómo (o si) salen.',
+        category: 'SUEÑO',
+        question: '¿Cómo estás durmiendo?',
         options: [
-          { text: 'Puedo sentirlas, procesarlas y soltarlas sin que me dominen', score: 0 },
-          { text: 'Las siento, a veces me desbordan un poco, pero encuentro la manera de gestionarlas', score: 1 },
-          { text: 'Las emociones me desbordan con frecuencia &mdash; o las contengo tanto que no sé qué siento', score: 2 },
-          { text: 'A menudo me asusto de mis propias reacciones, o siento que estoy entumecido por dentro', score: 3 }
+          { text: 'Bien', type: 'regulacion' },
+          { text: 'Regular', type: 'activacion' },
+          { text: 'Me cuesta dormir', type: 'activacion' },
+          { text: 'Duermo pero no descanso', type: 'colapso' }
         ]
       },
       {
-        category: 'CONEXION CON LOS DEMAS',
-        question: '¿Cómo te sientes en tus relaciones más cercanas en este momento?',
-        context: 'Pienso en familia, pareja, amigos. ¿Puedes estar presente con ellos?',
+        category: 'ESTRÉS',
+        question: 'Cuando algo te estresa, tú tiendes a:',
         options: [
-          { text: 'Me siento conectado y presente &mdash; las relaciones me nutren', score: 0 },
-          { text: 'La conexión es real pero a veces me cuesta estar genuinamente presente', score: 1 },
-          { text: 'Con frecuencia me siento solo incluso cuando estoy acompañado', score: 2 },
-          { text: 'Las relaciones me generan mucho estrés, o me he ido alejando de quienes me importan', score: 3 }
+          { text: 'Manejarlo bien', type: 'regulacion' },
+          { text: 'Preocuparme un poco', type: 'activacion' },
+          { text: 'Sobrerreaccionar / activarme', type: 'activacion' },
+          { text: 'Bloquearme o desconectarme', type: 'colapso' }
         ]
       },
       {
-        category: 'PATRONES REPETITIVOS',
-        question: '¿Reconoces en tu vida patrones que quisieras cambiar, pero que siguen repitiéndose?',
-        context: 'Formas de reaccionar, de relacionarte, de tratarte a ti mismo. Cosas que ya entendiste pero que el cuerpo no ha cambiado.',
+        category: 'SENSACIONES',
+        question: 'En tu cuerpo sientes más:',
         options: [
-          { text: 'He podido cambiar patrones que me hacían daño. No todo, pero hay movimiento', score: 0 },
-          { text: 'Hay algunos patrones difíciles, pero siento que tengo herramientas para trabajarlos', score: 1 },
-          { text: 'Veo claramente lo que quiero cambiar, pero algo me frena &mdash; como si supiera y no pudiera', score: 2 },
-          { text: 'Me siento atrapado en los mismos ciclos. Lo entiendo todo, y aun así nada cambia', score: 3 }
+          { text: 'Relajación', type: 'regulacion' },
+          { text: 'Algo de tensión', type: 'activacion' },
+          { text: 'Mucha tensión / agitación', type: 'activacion' },
+          { text: 'Pesadez / desconexión', type: 'colapso' }
         ]
       },
       {
-        category: 'SEGURIDAD INTERIOR',
-        question: '¿Con qué frecuencia sientes que el suelo bajo tus pies es firme &mdash; que estás bien, que estás a salvo?',
-        context: 'Más allá de las circunstancias externas &mdash; esa sensación interior de estar sostenido.',
+        category: 'DÍA A DÍA',
+        question: '¿Qué describe mejor tu día?',
         options: [
-          { text: 'Bastante seguido. Tengo un sentido interno de seguridad que me acompaña', score: 0 },
-          { text: 'A veces sí, a veces no. Depende mucho de lo que esté pasando afuera', score: 1 },
-          { text: 'Es una sensación que conozco poco &mdash; me cuesta sentirme verdaderamente tranquilo', score: 2 },
-          { text: 'Rara vez o nunca. Hay una sensación de fondo de alerta, amenaza o vacío constante', score: 3 }
+          { text: 'Me siento equilibrado/a', type: 'regulacion' },
+          { text: 'Me siento cargado/a pero sigo', type: 'activacion' },
+          { text: 'Estoy constantemente en alerta', type: 'activacion' },
+          { text: 'Me cuesta funcionar', type: 'colapso' }
         ]
       }
     ];
 
-    const results = [
-      {
-        range: [0, 6],
-        title: 'Tu sistema nervioso está bastante regulado',
-        description: 'Tienes una base sólida. Tu sistema nervioso puede activarse y volver a la calma con relativa facilidad. Lo que describes sugiere que cuentas con recursos internos reales &mdash; y que tienes cierta conciencia de lo que te mueve. Somaflow puede ser una herramienta para profundizar, consolidar y expandir esa capacidad.',
+    const results = {
+      activado: {
+        emoji: '🔥',
+        label: 'Sistema Activado',
+        badgeClass: 'activado',
+        title: 'Tu sistema no está fallando… está sobrecargado',
+        description: 'Lo que describes habla de un sistema nervioso en activación constante. Mente acelerada, tensión en el cuerpo, dificultad para descansar — no es que haya algo mal contigo. Tu cuerpo está intentando sostener más de lo que puede y se ha quedado en modo "encendido".',
         insights: [
-          { title: 'Tu fortaleza', text: 'Tienes una ventana de tolerancia amplia y recursos de regulación activos' },
-          { title: 'Hacia dónde crecer', text: 'Profundizar en la conexión somática para momentos de mayor exigencia' },
-          { title: 'Tu fase en Somaflow', text: 'Los días 23-30 de integración serán tu espacio más rico' }
+          { title: 'Lo que ocurre', text: 'Tu sistema nervioso está en modo supervivencia sostenido — activado como respuesta de protección' },
+          { title: 'Lo que necesitas', text: 'Señales de seguridad que bajen la activación y enseñen al cuerpo a volver a la calma real' },
+          { title: 'Tu ruta en Somaflow', text: 'Los primeros 14 días serán los más transformadores — técnicas de descarga y regulación activa' }
         ],
-        ctaTitle: 'Somaflow como práctica de profundización',
-        ctaText: 'Cuando el sistema nervioso ya tiene una base, el trabajo somático se convierte en algo diferente &mdash; no en salir de la crisis, sino en descubrir nuevos niveles de presencia y contacto.'
+        ctaTitle: 'Tu cuerpo puede aprender a volver a la calma',
+        ctaText: 'Somaflow tiene un camino concreto para bajar la activación, soltar tensión acumulada y enseñarle a tu cuerpo otra forma de estar. Sin presión. Sin perfección.',
+        videoUrl: ''
       },
-      {
-        range: [7, 13],
-        title: 'Tu sistema nervioso está en alerta intermitente',
-        description: 'Hay equilibrio en tu vida &mdash; pero es un equilibrio frágil. Hay momentos de calma genuina y momentos en que el cuerpo se desborda o se desconecta. Probablemente ya identificas los patrones, pero el cuerpo todavía no ha aprendido a regularse de manera más estable y predecible. Ese es exactamente el espacio donde Somaflow trabaja.',
+      colapsado: {
+        emoji: '❄️',
+        label: 'Sistema Colapsado',
+        badgeClass: 'colapsado',
+        title: 'No es falta de ganas… tu cuerpo está agotado',
+        description: 'Lo que describes habla de un sistema nervioso en baja energía y desconexión. Cansancio constante, dificultad para empezar cosas, sensación de estar "apagado". No es pereza — es un mecanismo de protección cuando el cuerpo ha sostenido demasiado por mucho tiempo.',
         insights: [
-          { title: 'Lo que ocurre', text: 'Tu sistema nervioso alterna entre estados de activación y regulación sin una base estable' },
-          { title: 'Lo que necesitas', text: 'Construir un punto de base más seguro para que la regulación no dependa de las circunstancias' },
-          { title: 'Tu fase en Somaflow', text: 'Los días 1-14 serán los más transformadores para ti' }
+          { title: 'Lo que ocurre', text: 'Tu sistema nervioso aprendió a apagarse como mecanismo de supervivencia frente a la sobrecarga' },
+          { title: 'Lo que necesitas', text: 'Reconectar poco a poco desde la gentileza — recuperar energía sin exigirte más de lo que puedes dar' },
+          { title: 'Tu ruta en Somaflow', text: 'Prácticas de activación suave que no abruman — paso a paso, desde donde estás ahora' }
         ],
-        ctaTitle: 'Somaflow es para este exacto momento',
-        ctaText: 'El programa está diseñado para personas como tú: que ya tienen conciencia, que ya han empezado a mirar hacia adentro &mdash; y que necesitan un método para que el cuerpo aprenda lo que la mente ya sabe.'
+        ctaTitle: 'No tienes que empujarte — puedes empezar desde donde estás',
+        ctaText: 'Somaflow está diseñado para salir del apagamiento sin forzarte, reconectar con tu cuerpo de forma suave y recuperar energía paso a paso.',
+        videoUrl: ''
       },
-      {
-        range: [14, 19],
-        title: 'Tu sistema nervioso está en sobrecarga sostenida',
-        description: 'Lo que describes habla de un sistema nervioso que lleva mucho tiempo en modo supervivencia. El agotamiento, la desconexión, las reacciones que no entiendes &mdash; no son fallas tuyas. Son la forma que tiene tu sistema de protegerte cuando ha aprendido que el mundo no es completamente seguro. Somaflow está pensado exactamente para este lugar.',
+      regulado: {
+        emoji: '🌿',
+        label: 'Sistema Regulado',
+        badgeClass: 'regulado',
+        title: 'Tu sistema está bien… y aún puede sentirse mejor',
+        description: 'Por lo que respondiste, tu sistema nervioso está en un estado relativamente equilibrado. Tienes momentos de calma, puedes responder al estrés y hay cierta estabilidad interna. Eso es una muy buena señal — y hay espacio para profundizar.',
         insights: [
-          { title: 'Lo que está pasando', text: 'Tu sistema nervioso aprendió a funcionar en alerta como modo de protección' },
-          { title: 'Lo que es posible', text: 'El sistema nervioso puede aprender nuevos patrones &mdash; y el cuerpo tiene esa capacidad' },
-          { title: 'Un recordatorio', text: 'Considera también el acompañamiento de un profesional de salud mental durante el proceso' }
+          { title: 'Tu fortaleza', text: 'Tienes una base real de regulación — tu sistema nervioso tiene recursos internos activos' },
+          { title: 'Hacia dónde crecer', text: 'Profundizar en la conexión somática y liberar carga acumulada que quizá no notas aún' },
+          { title: 'Tu ruta en Somaflow', text: 'Los días 23-30 de integración serán tu espacio más rico — llevarás la práctica a otro nivel' }
         ],
-        ctaTitle: 'No tienes que seguir cargando esto solo',
-        ctaText: 'Somaflow te da un camino concreto, paso a paso, para comenzar a enseñarle a tu sistema nervioso que hay otra forma de estar. Empieza por los primeros días &mdash; sin prisa, sin exigencia.'
-      },
-      {
-        range: [20, 24],
-        title: 'Tu sistema nervioso necesita apoyo urgente',
-        description: 'Lo que describes habla de una carga muy pesada. El nivel de activación, desconexión o agotamiento que sientes merece atención real &mdash; y mereces recibirla. Somaflow puede ser parte del camino, pero lo primero que quiero decirte es esto: no estás solo, y lo que sientes tiene sentido dado lo que has vivido.',
-        insights: [
-          { title: 'Primero lo primero', text: 'Considera buscar acompañamiento terapéutico personalizado &mdash; esto que llevas merece ese espacio' },
-          { title: 'Somaflow como apoyo', text: 'Las prácticas de los primeros días pueden darte recursos de regulación para el día a día' },
-          { title: 'Lo que quiero que sepas', text: 'La capacidad de sanar está en ti. El sistema nervioso puede aprender &mdash; y lo hará, con el apoyo adecuado' }
-        ],
-        ctaTitle: 'Hay un camino hacia adelante',
-        ctaText: 'Si decides empezar Somaflow, hazlo sin prisa. Ve despacio. Los primeros días tienen todo lo que necesitas para empezar a sentir que hay suelo. Y si en este momento sientes que necesitas algo más, te invito a escribirme.',
-        ethicsNote: true
+        ctaTitle: 'No es empezar de cero — es ir un paso más profundo',
+        ctaText: 'Somaflow te ayuda a fortalecer esa base, profundizar en la regulación y construir más presencia y contacto con tu cuerpo en el día a día.',
+        videoUrl: ''
       }
-    ];
+    };
 
-    // Test State
+    // ——— STATE ———
     let currentQuestion = 0;
     let answers = new Array(questions.length).fill(null);
+    let capturedEmail = '';
+    let capturedName = '';
+    let capturedPhone = '';
 
     const testContent = document.getElementById('test-content');
     const progressFill = document.getElementById('progress-fill');
@@ -2386,16 +2569,121 @@
     const btnBack = document.getElementById('btn-back');
     const btnNext = document.getElementById('btn-next');
     const testNav = document.getElementById('test-nav');
+    const progressHeader = document.querySelector('.progress-header');
+    const progressBar = document.querySelector('.progress-bar');
 
+    // ——— SUPABASE ———
+    async function saveToSupabase(name, email, phone, segment) {
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            id: crypto.randomUUID(),
+            name: name,
+            email: email,
+            phone: phone || null,
+            segment: segment,
+            assessment_completed: true,
+            updated_at: new Date().toISOString()
+          })
+        });
+        return res.ok || res.status === 409;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // ——— SCORING ———
+    function calculateScores() {
+      const scores = { activacion: 0, colapso: 0, regulacion: 0 };
+      answers.forEach(function(answerIndex, qIndex) {
+        if (answerIndex !== null) {
+          scores[questions[qIndex].options[answerIndex].type]++;
+        }
+      });
+      return scores;
+    }
+
+    function determineResult(scores) {
+      var activacion = scores.activacion;
+      var colapso = scores.colapso;
+      var regulacion = scores.regulacion;
+
+      // If 🔥 and ❄️ are close (diff ≤ 1) and at least one >= regulacion: tie-break by Q1 (cuerpo)
+      if (Math.abs(activacion - colapso) <= 1 && Math.max(activacion, colapso) >= regulacion) {
+        return (answers[0] !== null && questions[0].options[answers[0]].type === 'colapso')
+          ? 'colapsado' : 'activado';
+      }
+      // Clear winner
+      if (regulacion > activacion && regulacion > colapso) return 'regulado';
+      if (activacion > colapso) return 'activado';
+      if (colapso > activacion) return 'colapsado';
+      // 🌿 never wins in a tie
+      if (activacion === regulacion) return 'activado';
+      return 'colapsado';
+    }
+
+    // ——— UI HELPERS ———
+    function showProgress(show) {
+      progressHeader.style.display = show ? 'flex' : 'none';
+      progressBar.style.display = show ? 'block' : 'none';
+    }
+
+    // ——— GATE (email capture) ———
+    function renderGate() {
+      showProgress(false);
+      testNav.style.display = 'none';
+      testContent.innerHTML = `
+        <div class="test-gate">
+          <div class="test-gate-emoji">🧠</div>
+          <h3 class="test-gate-title">¿Cómo está tu Sistema Nervioso hoy?</h3>
+          <p class="test-gate-subtitle">Descubre si tu cuerpo está en calma, en alerta o agotado &mdash; y qué puedes hacer para regularlo.</p>
+          <div class="test-input-group">
+            <input type="email" class="test-input" id="gate-email" placeholder="tucorreo@email.com" autocomplete="email" />
+          </div>
+          <button class="btn-gate" id="btn-gate-submit">Comenzar test gratuito &rarr;</button>
+          <p class="test-privacy">Sin spam. Tu información es privada.</p>
+        </div>
+      `;
+      var input = document.getElementById('gate-email');
+      var btn = document.getElementById('btn-gate-submit');
+      btn.addEventListener('click', function() {
+        var email = input.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          input.style.borderColor = '#e05050';
+          input.focus();
+          return;
+        }
+        capturedEmail = email;
+        showProgress(true);
+        testNav.style.display = 'flex';
+        renderQuestion();
+      });
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
+      input.addEventListener('input', function() { input.style.borderColor = ''; });
+    }
+
+    // ——— QUESTIONS ———
     function renderQuestion() {
-      const q = questions[currentQuestion];
-      const selectedAnswer = answers[currentQuestion];
+      var q = questions[currentQuestion];
+      var selectedAnswer = answers[currentQuestion];
+
+      progressFill.style.width = (((currentQuestion + 1) / questions.length) * 100) + '%';
+      progressCount.textContent = 'Pregunta ' + (currentQuestion + 1) + ' de ' + questions.length;
+      btnBack.disabled = currentQuestion === 0;
+      btnNext.disabled = answers[currentQuestion] === null;
+      btnNext.textContent = currentQuestion === questions.length - 1 ? 'Ver mi resultado \u2192' : 'Siguiente \u2192';
 
       testContent.innerHTML = `
         <div class="question-container">
           <p class="question-category">${q.category}</p>
           <h3 class="question-text">${q.question}</h3>
-          <p class="question-context">${q.context}</p>
           <div class="options-grid">
             ${q.options.map((opt, i) => `
               <div class="option-btn ${selectedAnswer === i ? 'selected' : ''}" data-index="${i}" role="button" tabindex="0">
@@ -2407,22 +2695,10 @@
         </div>
       `;
 
-      // Update progress
-      progressFill.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
-      progressCount.textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
-
-      // Update buttons
-      btnBack.disabled = currentQuestion === 0;
-      btnNext.disabled = answers[currentQuestion] === null;
-      btnNext.textContent = currentQuestion === questions.length - 1 ? 'Ver mi resultado →' : 'Siguiente →';
-
-      // Add event listeners to options
-      document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.addEventListener('click', () => selectOption(parseInt(btn.dataset.index)));
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            selectOption(parseInt(btn.dataset.index));
-          }
+      document.querySelectorAll('.option-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { selectOption(parseInt(btn.dataset.index)); });
+        btn.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') selectOption(parseInt(btn.dataset.index));
         });
       });
     }
@@ -2432,37 +2708,68 @@
       renderQuestion();
     }
 
-    function calculateScore() {
-      return answers.reduce((total, answerIndex, qIndex) => {
-        return total + questions[qIndex].options[answerIndex].score;
-      }, 0);
-    }
-
-    function getResult(score) {
-      return results.find(r => score >= r.range[0] && score <= r.range[1]);
-    }
-
-    function renderResult() {
-      const score = calculateScore();
-      const result = getResult(score);
-      const circumference = 2 * Math.PI * 52;
-      const progress = (score / 24) * circumference;
-
+    // ——— LEAD FORM (name + phone) ———
+    function renderLeadForm() {
+      showProgress(false);
       testNav.style.display = 'none';
-      progressFill.style.width = '100%';
-      progressCount.textContent = 'Resultado';
+      testContent.innerHTML = `
+        <div class="lead-form-container">
+          <div class="test-gate-emoji">✉️</div>
+          <h3 class="test-gate-title">Tu sistema nervioso necesita una intervención específica.</h3>
+          <p class="test-gate-subtitle">Déjame tus datos y te enviaré la práctica diseñada exactamente para tu tipo de respuesta corporal.</p>
+          <div class="test-input-group">
+            <input type="text" class="test-input" id="lead-name" placeholder="Tu nombre" autocomplete="given-name" />
+            <input type="tel" class="test-input" id="lead-phone" placeholder="Tu teléfono (opcional)" autocomplete="tel" />
+          </div>
+          <button class="btn-lead" id="btn-lead-submit">Recibir mi práctica personalizada &rarr;</button>
+          <p class="test-privacy">Sin spam. Tu información es privada y nunca se vende.</p>
+        </div>
+      `;
+      var nameInput = document.getElementById('lead-name');
+      var phoneInput = document.getElementById('lead-phone');
+      var btn = document.getElementById('btn-lead-submit');
+      btn.addEventListener('click', async function() {
+        var name = nameInput.value.trim();
+        if (!name) {
+          nameInput.style.borderColor = '#e05050';
+          nameInput.focus();
+          return;
+        }
+        capturedName = name;
+        capturedPhone = phoneInput.value.trim();
+        btn.textContent = 'Guardando...';
+        btn.disabled = true;
+        var scores = calculateScores();
+        var resultKey = determineResult(scores);
+        await saveToSupabase(capturedName, capturedEmail, capturedPhone, resultKey);
+        renderResult(resultKey, scores);
+      });
+      nameInput.addEventListener('input', function() { nameInput.style.borderColor = ''; });
+      nameInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') phoneInput.focus(); });
+      phoneInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
+    }
+
+    // ——— RESULT ———
+    function renderResult(resultKey, scores) {
+      showProgress(false);
+      testNav.style.display = 'none';
+      progressCount.textContent = 'Tu resultado';
+      var result = results[resultKey];
+      var videoContent = result.videoUrl
+        ? '<iframe src="' + result.videoUrl + '" allowfullscreen allow="autoplay; encrypted-media"></iframe>'
+        : '<div class="result-video-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><p>Video explicativo próximamente</p></div>';
 
       testContent.innerHTML = `
         <div class="result-container">
-          <div class="result-ring">
-            <svg viewBox="0 0 120 120">
-              <circle class="result-ring-bg" cx="60" cy="60" r="52"/>
-              <circle class="result-ring-progress" cx="60" cy="60" r="52"
-                stroke-dasharray="${circumference}"
-                stroke-dashoffset="${circumference - progress}"/>
-            </svg>
-            <div class="result-score">${score}/24</div>
+          <div style="text-align:center;">
+            <span class="result-badge ${result.badgeClass}">${result.emoji} ${result.label}</span>
           </div>
+          <div class="scores-breakdown">
+            <span class="score-pill">🔥 Activación <span>${scores.activacion}</span></span>
+            <span class="score-pill">❄️ Colapso <span>${scores.colapso}</span></span>
+            <span class="score-pill">🌿 Regulación <span>${scores.regulacion}</span></span>
+          </div>
+          <div class="result-video-wrap">${videoContent}</div>
           <h3 class="result-title">${result.title}</h3>
           <p class="result-description">${result.description}</p>
           <div class="insights-grid">
@@ -2479,49 +2786,43 @@
           <div class="result-cta-box">
             <h4 class="result-cta-title">${result.ctaTitle}</h4>
             <p class="result-cta-text">${result.ctaText}</p>
-            <a href="#precio" class="result-cta-btn">Comenzar Somaflow →</a>
+            <a href="#precio" class="result-cta-btn">Comenzar Somaflow &rarr;</a>
             <p class="result-guarantee">Garantía de 7 días si no es para ti</p>
           </div>
-          ${result.ethicsNote ? `
-            <div class="ethics-note">
-              <p>Este test no es un diagnóstico clínico. Si estás en un momento de crisis, te recomiendo buscar acompañamiento profesional.</p>
-            </div>
-          ` : ''}
           <a class="result-retry" id="retry-test">Hacer el test de nuevo</a>
         </div>
       `;
-
       document.getElementById('retry-test').addEventListener('click', resetTest);
-
-      // Scroll to result
       document.getElementById('test').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function resetTest() {
       currentQuestion = 0;
       answers = new Array(questions.length).fill(null);
-      testNav.style.display = 'flex';
-      renderQuestion();
+      capturedEmail = '';
+      capturedName = '';
+      capturedPhone = '';
+      renderGate();
     }
 
-    btnBack.addEventListener('click', () => {
+    btnBack.addEventListener('click', function() {
       if (currentQuestion > 0) {
         currentQuestion--;
         renderQuestion();
       }
     });
 
-    btnNext.addEventListener('click', () => {
+    btnNext.addEventListener('click', function() {
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         renderQuestion();
       } else {
-        renderResult();
+        renderLeadForm();
       }
     });
 
-    // Initialize test
-    renderQuestion();
+    // Initialize
+    renderGate();
 
     // UnicornStudio — activar por proximidad al CTA
     (function () {
