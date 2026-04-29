@@ -2636,41 +2636,10 @@
     }
 
     // ——— GATE (email capture) ———
-    function renderGate() {
-      showProgress(false);
-      testNav.style.display = 'none';
-      testContent.innerHTML = `
-        <div class="test-gate">
-          <div class="test-gate-emoji">🧠</div>
-          <h3 class="test-gate-title">¿Cómo está tu Sistema Nervioso hoy?</h3>
-          <p class="test-gate-subtitle">Descubre si tu cuerpo está en calma, en alerta o agotado &mdash; y qué puedes hacer para regularlo.</p>
-          <div class="test-input-group">
-            <input type="email" class="test-input" id="gate-email" placeholder="tucorreo@email.com" autocomplete="email" />
-          </div>
-          <button class="btn-gate" id="btn-gate-submit">Comenzar test gratuito &rarr;</button>
-          <p class="test-privacy">Sin spam. Tu información es privada.</p>
-        </div>
-      `;
-      var input = document.getElementById('gate-email');
-      var btn = document.getElementById('btn-gate-submit');
-      btn.addEventListener('click', function() {
-        var email = input.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          input.style.borderColor = '#e05050';
-          input.focus();
-          return;
-        }
-        capturedEmail = email;
-        showProgress(true);
-        testNav.style.display = 'flex';
-        renderQuestion();
-      });
-      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
-      input.addEventListener('input', function() { input.style.borderColor = ''; });
-    }
-
     // ——— QUESTIONS ———
     function renderQuestion() {
+      showProgress(true);
+      testNav.style.display = 'flex';
       var q = questions[currentQuestion];
       var selectedAnswer = answers[currentQuestion];
 
@@ -2708,7 +2677,7 @@
       renderQuestion();
     }
 
-    // ——— LEAD FORM (name + phone) ———
+    // ——— LEAD FORM (nombre + correo + teléfono) ———
     function renderLeadForm() {
       showProgress(false);
       testNav.style.display = 'none';
@@ -2719,6 +2688,7 @@
           <p class="test-gate-subtitle">Déjame tus datos y te enviaré la práctica diseñada exactamente para tu tipo de respuesta corporal.</p>
           <div class="test-input-group">
             <input type="text" class="test-input" id="lead-name" placeholder="Tu nombre" autocomplete="given-name" />
+            <input type="email" class="test-input" id="lead-email" placeholder="tucorreo@email.com" autocomplete="email" />
             <input type="tel" class="test-input" id="lead-phone" placeholder="Tu teléfono (opcional)" autocomplete="tel" />
           </div>
           <button class="btn-lead" id="btn-lead-submit">Recibir mi práctica personalizada &rarr;</button>
@@ -2726,16 +2696,24 @@
         </div>
       `;
       var nameInput = document.getElementById('lead-name');
+      var emailInput = document.getElementById('lead-email');
       var phoneInput = document.getElementById('lead-phone');
       var btn = document.getElementById('btn-lead-submit');
       btn.addEventListener('click', async function() {
         var name = nameInput.value.trim();
+        var email = emailInput.value.trim();
         if (!name) {
           nameInput.style.borderColor = '#e05050';
           nameInput.focus();
           return;
         }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailInput.style.borderColor = '#e05050';
+          emailInput.focus();
+          return;
+        }
         capturedName = name;
+        capturedEmail = email;
         capturedPhone = phoneInput.value.trim();
         btn.textContent = 'Guardando...';
         btn.disabled = true;
@@ -2745,7 +2723,9 @@
         renderResult(resultKey, scores);
       });
       nameInput.addEventListener('input', function() { nameInput.style.borderColor = ''; });
-      nameInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') phoneInput.focus(); });
+      emailInput.addEventListener('input', function() { emailInput.style.borderColor = ''; });
+      nameInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') emailInput.focus(); });
+      emailInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') phoneInput.focus(); });
       phoneInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
     }
 
@@ -2802,7 +2782,7 @@
       capturedEmail = '';
       capturedName = '';
       capturedPhone = '';
-      renderGate();
+      renderQuestion();
     }
 
     btnBack.addEventListener('click', function() {
@@ -2822,7 +2802,7 @@
     });
 
     // Initialize
-    renderGate();
+    renderQuestion();
 
     // UnicornStudio — activar por proximidad al CTA
     (function () {
