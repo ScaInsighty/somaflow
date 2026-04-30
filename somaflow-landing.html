@@ -2274,7 +2274,7 @@
             <span class="precio-feature-text">Acompañamiento por WhatsApp</span>
           </div>
         </div>
-        <button class="precio-btn">Quiero empezar ahora &rarr;</button>
+        <button class="precio-btn" id="btn-pagar">Quiero empezar ahora &rarr;</button>
         <p class="precio-guarantee">Garantía de 7 días — si no es para ti, te devolvemos tu inversión</p>
       </div>
     </section>
@@ -2382,6 +2382,7 @@
     <a href="#" class="footer-right">&larr; Volver al sitio principal</a>
   </footer>
 
+  <script src="https://checkout.epayco.co/checkout.js"></script>
   <script>
     // Scroll reveal observer
     const revealObserver = new IntersectionObserver((entries) => {
@@ -2803,6 +2804,30 @@
 
     // Initialize
     renderQuestion();
+
+    // ——— ePAYCO ———
+    var epaycoHandler = ePayco.checkout.configure({
+      key: '93b0a3c6369ef886d1572601327b96cb',
+      test: true  // cambiar a false al activar producción
+    });
+
+    document.getElementById('btn-pagar').addEventListener('click', function() {
+      epaycoHandler.open({
+        name: 'Somaflow',
+        description: 'Programa de 30 días para regular tu sistema nervioso desde el cuerpo',
+        currency: 'usd',
+        amount: '47',
+        tax_base: '0',
+        tax: '0',
+        country: 'co',
+        lang: 'es',
+        external: 'false',
+        extra1: capturedEmail || '',
+        extra2: capturedName || '',
+        email: capturedEmail || '',
+        name_billing: capturedName || ''
+      });
+    });
 
     // UnicornStudio — activar por proximidad al CTA
     (function () {
